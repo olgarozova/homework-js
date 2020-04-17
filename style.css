@@ -10,3 +10,6 @@
 #contentResult__text{
     min-height: 20px;
 }
+#form_transform__button{
+    display: block;
+}
