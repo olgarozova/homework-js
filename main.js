@@ -2,7 +2,6 @@ function isNumber(char) {
     return !isNaN(char) && char !=='' && char !==' ';
   }
 
-
 function  isLetter(char) {     
     char = char.toUpperCase();
     if (!(char >= "A" && char <= "Z")){      
@@ -10,32 +9,27 @@ function  isLetter(char) {
     }
     return true;
  } 
-
-function transformTextWithTag(str,tagInteger,tagStr){
-    var result = '';   
-    var numbFlag = false;
-
-    for(var i in str) {         
-        if(isNumber(str[i])){                                                
-            result += numbFlag ? str[i] : `<${tagInteger}>${str[i]}`;
-            numbFlag = true;
-        }else{
-            if(numbFlag) { result += `</${tagInteger}>`; }
-            numbFlag = false;
-            if(isLetter(str[i]) && str[i] === str[i].toUpperCase()) { result += `<${tagStr}>`; }                         
-
-            result += str[i];
-
-            if(str[i] === '.')  { result += `</${tagStr}>`; }              
-        }
-        
+ 
+ function isInclude(symbol,include){
+    for(var char of include){        
+        if(symbol === char) return true;                        
     }
-    console.log(result);
+    return false;
+ }
+
+ function clearStr(str,includeSymb){
+    var result = '';
+    for(var item of str){      
+       if(isLetter(item) || isNumber(item) || isInclude(item,includeSymb)){        
+          result += item;         
+       }       
+    }
     return result;
-}
+ } 
 
 function insertHtml(){ 
-    var str = document.getElementById("form_transform__text").value;      
-    var html = transformTextWithTag(str,"b style = 'color:red'","p");  
+    var str = document.getElementById("form_transform__text").value; 
+    var includeSymb = [' ','.',','];     
+    var html = clearStr(str,includeSymb);  
     document.getElementById('contentResult__text').innerHTML = html;    
 }
