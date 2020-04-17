@@ -13,13 +13,15 @@
     <h1 id="contentTitle"> Task 3</h1>
     <form id = "form_transform" method="post" action="/">
         <b>Enter text:</b><br>
-        <textarea id = "form_transform__text" rows="10" cols="45" >Text text } text text text. Text > text text text text $ text text text. % text text text text 32 text text text </textarea> 
+        <textarea id = "form_transform__text" rows="10" cols="45" >Text text  text text text. Text word1 text text text text text text my word1 text. text text text text 32 word2 text text text </textarea> 
+        <br><b>Enter list words for search:</b><br>
+        <input id = "form_transform__words" value="word1,word2,text"> 
         <input type="button" onclick = "insertHtml()" id = "form_transform__button" value="Ok">      
     </form>
     <div class = "contentResultTitle">Result:</div>
     <div class = "contentResult">         
-        <div id ="contentResult__text">                
-        </div>
+        <ul id ="contentResult_list">                
+        </ul>
     </div>
 </body>
 

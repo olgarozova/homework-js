@@ -1,35 +1,51 @@
-function isNumber(char) {   
-    return !isNaN(char) && char !=='' && char !==' ';
-  }
-
-function  isLetter(char) {     
+function isLetter(char) {
     char = char.toUpperCase();
-    if (!(char >= "A" && char <= "Z")){      
+    if (!(char >= "A" && char <= "Z")) {
         return false;
     }
     return true;
- } 
- 
- function isInclude(symbol,include){
-    for(var char of include){        
-        if(symbol === char) return true;                        
-    }
-    return false;
- }
+}
 
- function clearStr(str,includeSymb){
-    var result = '';
-    for(var item of str){      
-       if(isLetter(item) || isNumber(item) || isInclude(item,includeSymb)){        
-          result += item;         
-       }       
-    }
-    return result;
- } 
+function isNumber(char) {
+    return !isNaN(char) && char !== '' && char !== ' ';
+}
 
-function insertHtml(){ 
-    var str = document.getElementById("form_transform__text").value; 
-    var includeSymb = [' ','.',','];     
-    var html = clearStr(str,includeSymb);  
-    document.getElementById('contentResult__text').innerHTML = html;    
+
+function counterWords(string, checkWords) {
+
+    var wordsList = checkWords.split(',');
+    var words = {};
+    for (var item of wordsList) {
+        words[item.toLowerCase()] = '0';
+    }    
+    var textWord = '';
+    for (var symb of string) {
+        if (isLetter(symb) || isNumber(symb)) {
+            textWord += symb.toLowerCase();
+        } else {
+            if (words[textWord]) {
+                words[textWord]++;
+            }
+
+            textWord = '';
+        }
+    }    
+    return words;
+}
+
+function outputResult(words) {
+    var str = '';
+
+    for (var word in words) {
+        str += `<li>${word}: ${words[word]}</li>`;
+    }
+     console.log(str);
+    return str;
+}
+
+function insertHtml() {
+    var str = document.getElementById("form_transform__text").value;
+    var words = document.getElementById("form_transform__words").value;
+    var html = outputResult(counterWords(str, words));
+    document.getElementById('contentResult_list').innerHTML = html;
 }

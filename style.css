@@ -1,4 +1,5 @@
 .contentResult,
+#form_transform__words,
 #form_transform__text{
     border: 1px solid #bbb;
     width: 300px;
@@ -12,4 +13,5 @@
 }
 #form_transform__button{
     display: block;
+    margin-top: 10px; 
 }
