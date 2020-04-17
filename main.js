@@ -1,22 +1,41 @@
-function transformStrToHtmlList(str,symb1,symb2){
-    var list = str.split(symb1,1);         
+function isNumber(char) {   
+    return !isNaN(char) && char !=='' && char !==' ';
+  }
 
-    var pattern = str.slice(list[0].length+1,str.length);    
-    
-    var patternTag = pattern.split(symb2); 
-    
-    list = list[0].split(',');
-           
-    var result = '';
-    for (var item of list){        
-        result += patternTag[0] + item + patternTag[1];                        
+
+function  isLetter(char) {     
+    char = char.toUpperCase();
+    if (!(char >= "A" && char <= "Z")){      
+        return false;
     }
+    return true;
+ } 
 
+function transformTextWithTag(str,tagInteger,tagStr){
+    var result = '';   
+    var numbFlag = false;
+
+    for(var i in str) {         
+        if(isNumber(str[i])){                                                
+            result += numbFlag ? str[i] : `<${tagInteger}>${str[i]}`;
+            numbFlag = true;
+        }else{
+            if(numbFlag) { result += `</${tagInteger}>`; }
+            numbFlag = false;
+            if(isLetter(str[i]) && str[i] === str[i].toUpperCase()) { result += `<${tagStr}>`; }                         
+
+            result += str[i];
+
+            if(str[i] === '.')  { result += `</${tagStr}>`; }              
+        }
+        
+    }
+    console.log(result);
     return result;
 }
 
 function insertHtml(){ 
     var str = document.getElementById("form_transform__text").value;      
-    var html = transformStrToHtmlList(str,'/','$');  
-    document.getElementById('contentResult__list').innerHTML = html;    
+    var html = transformTextWithTag(str,"b style = 'color:red'","p");  
+    document.getElementById('contentResult__text').innerHTML = html;    
 }

@@ -7,3 +7,6 @@
 .contentResultTitle{
     margin-top: 20px;    
 }
+#contentResult__text{
+    min-height: 20px;
+}
