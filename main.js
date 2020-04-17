@@ -18,5 +18,5 @@ function transformStrToHtmlList(str,symb1,symb2){
 function insertHtml(){ 
     var str = document.getElementById("form_transform__text").value;      
     var html = transformStrToHtmlList(str,'/','$');  
-    document.getElementById('list').innerHTML = html;    
+    document.getElementById('contentResult__list').innerHTML = html;    
 }
