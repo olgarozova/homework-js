@@ -12,12 +12,23 @@
 <body>
     <h1 id="contentTitle"> Task 7</h1>
     <form action="/" method="POST">
-        <select id = "selectBank">
-            <option value="none" >Select bank</option>
-            <option value="privat">Privat</option>
-            <option value="mono">Monobank</option>
-            <option value="pumb">Pumb</option>
-          </select>
+        <label>            
+            <input class = "checkboxElement" type="checkbox" value="disable">
+            Disable
+        </label>
+        <label>            
+            <input class = "checkboxElement" type="checkbox" value="read">
+            Read only            
+        </label>
+        <label>            
+            <input class = "checkboxElement" type="checkbox" value="number">
+            Numbers only            
+        </label>
+        <label>            
+            <input class = "checkboxElement" type="checkbox" value="hidden">
+            Hidden chars            
+        </label>                
+        <input id = "textElement" type = "text" />   
     </form>
     <div id="description"></div>        
 </body>

@@ -1,25 +1,45 @@
 
 function init() {
-    var desc = {
-        'privat' : "<b>Privatbank</b> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis consequuntur voluptas sunt obcaecati, veritatis perspiciatis alias soluta illo accusamus omnis, rem eligendi modi, sint at. Aspernatur voluptatem perferendis ea molestias! ", 
-        'mono' : "<b>Monobank</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quisquam nisi quae labore eos ad, deserunt deleniti fugiat exercitationem expedita reiciendis vitae delectus numquam aspernatur illo doloribus accusantium sapiente possimus?", 
-        'pumb' : "<b>Pumb</b> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit dolore quia neque porro tempora facere, modi perspiciatis excepturi corrupti harum libero sapiente vitae aliquid quo totam iure, rerum sequi accusamus! " 
-    };
-
-
-    var selectElement = document.querySelector("#selectBank");
-    var descriptionElement = document.querySelector("#description");     
-
-    function showDescriptoin() {       
-       console.dir(this[this.selectedIndex].value);
-       if(this[this.selectedIndex].value !== 'none'){
-         descriptionElement.innerHTML = desc[this[this.selectedIndex].value];
-         return;
-       }
-       descriptionElement.innerHTML = '';
-    }
     
-    selectElement.onchange = showDescriptoin;
+    var checkboxes = document.querySelectorAll(".checkboxElement");
+    var textElement = document.querySelector("#textElement");
+        
+    for(var checkbox of checkboxes){        
+        checkbox.onclick = changeInputAttribute;
+    }
+
+
+    function setDefault(checkedElement){
+
+        textElement.disabled = false;
+        textElement.readOnly = false;
+        textElement.type = 'text';
+
+        for(var checkbox of checkboxes){                     
+            checkbox.checked = checkbox.value === checkedElement.value ? true : false;            
+        }        
+    }
+
+
+    function changeInputAttribute(){
+         
+        setDefault(this);
+        
+        switch(this.value){
+            case 'disable' :             
+                textElement.disabled = true;
+                break;
+            case 'read' :             
+                textElement.readOnly = true;
+                break;
+            case 'number' :             
+                textElement.type = 'number';
+                break;
+            case 'hidden' :             
+                textElement.type = 'password';
+                break;                            
+        }          
+    }   
    
 }
 init();
