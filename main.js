@@ -1,66 +1,26 @@
 
 function init() {
-    var addButton = document.querySelector("#addButton");
-    var deleteButton = document.querySelector("#deleteButton");
+    var desc = {
+        'privat' : "<b>Privatbank</b> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis consequuntur voluptas sunt obcaecati, veritatis perspiciatis alias soluta illo accusamus omnis, rem eligendi modi, sint at. Aspernatur voluptatem perferendis ea molestias! ", 
+        'mono' : "<b>Monobank</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quisquam nisi quae labore eos ad, deserunt deleniti fugiat exercitationem expedita reiciendis vitae delectus numquam aspernatur illo doloribus accusantium sapiente possimus?", 
+        'pumb' : "<b>Pumb</b> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit dolore quia neque porro tempora facere, modi perspiciatis excepturi corrupti harum libero sapiente vitae aliquid quo totam iure, rerum sequi accusamus! " 
+    };
 
-    var blocksArr = [];
 
-    function myIndexOf(value, chars) {
-        for (var i = 0; i < chars.length; i++) {
-            if (chars[i] === value) return i;
-        }
-        return -1;
+    var selectElement = document.querySelector("#selectBank");
+    var descriptionElement = document.querySelector("#description");     
+
+    function showDescriptoin() {       
+       console.dir(this[this.selectedIndex].value);
+       if(this[this.selectedIndex].value !== 'none'){
+         descriptionElement.innerHTML = desc[this[this.selectedIndex].value];
+         return;
+       }
+       descriptionElement.innerHTML = '';
     }
-
-    function insertBlockToTHML(index, name) {
-        var element = document.createElement('div');
-        element.innerHTML = `#${index} ${name}`;
-        element.id = `block-${index}`;
-        element.className = 'block';
-
-        var divBlocks = document.querySelector("#blocks");
-        divBlocks.appendChild(element);
-    }
-
-    function addBlock() {
-        var blockName = document.querySelector("#blockName");
-
-        if (blockName.value && myIndexOf(blockName.value, blocksArr) === -1) {
-
-            blocksArr.push(blockName.value);
-            var blockIndex = blocksArr.length;
-
-            insertBlockToTHML(blockIndex, blockName.value);
-        }
-
-    }
-
-    function renumberBlocks() {
-        var divBlocks = document.querySelector("#blocks");
-        divBlocks.innerHTML = '';
-
-        for (var i = 0; i < blocksArr.length; i++) {
-            insertBlockToTHML(i + 1, blocksArr[i]);
-        }
-    }
-
-    function deleteBlock() {
-
-        var blockName = document.querySelector("#blockName");
-        var blockIndex = myIndexOf(blockName.value, blocksArr);
-        if (blockIndex !== -1) {
-            var element = document.getElementById(`block-${blockIndex + 1}`);
-            element.parentNode.removeChild(element);
-
-            blocksArr.splice(blockIndex, 1);
-
-            renumberBlocks();
-        }
-
-    }
-
-    addButton.onclick = addBlock;
-    deleteButton.onclick = deleteBlock;
+    
+    selectElement.onchange = showDescriptoin;
+   
 }
 init();
 
