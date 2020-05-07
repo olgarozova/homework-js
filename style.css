@@ -1,22 +1,68 @@
-.checkboxes{
-    display: flex;
-    width: 300px;
-    justify-content: space-between;  
-    margin-left: 50px;  
+
+#content{
+    border-top: 1px solid #ccc;
 }
-.checkbox{
+#content__menu-wrapper{
+    width: 250px;    
+    position: relative; /*change the value to "absolute" get a content-independent menu*/
+    padding-bottom: 26px;
+    overflow: hidden;
+    transition: 2s;
+}
+
+#content__menu{    
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ececec;  
+    box-sizing: border-box;  
+    position: absolute;         
+    bottom: 26px;
+}
+
+#content__menu-arrow{        
+    position: absolute;    
+    cursor: pointer;
     width: 20px;
-    height: 20px;
-    border: 1px solid lightblue;
-    border-radius: 2px;
+    height: 26px;
+    font-size: 22px;    
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    left: calc(50% - 10px);
+    top: 0;
+    transition: 2s;
 }
-.active::after {
-    content: "";
-    display: inline-block;
-    height: 8px;
-    width: 18px;
-    border-left: 2px solid dodgerblue;
-    border-bottom: 2px solid dodgerblue;
-    margin: 2px;    
-    transform: rotate(-45deg);
+.show #content__menu-arrow{
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#content__menu-arrow:after{
+    content: "\27A4";
+}
+#content__menu li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ececec;
+}
+#content__menu li:last-child{
+    border-bottom: 0;
+}
+#content__menu li a{
+    display: block;
+    padding: 12px;
+    font: 13px Arial, tahoma, sans-serif;    
+    color: #777;
+    text-decoration: none;
+}
+#content__menu li a:hover {
+    background: #f9f9f9;
+    color: #333;
 }
