@@ -1,46 +1,39 @@
 
 function init() {
-    
-    var checkboxes = document.querySelectorAll(".checkboxElement");
-    var textElement = document.querySelector("#textElement");
-        
-    for(var checkbox of checkboxes){        
-        checkbox.onclick = changeInputAttribute;
+
+    const arrows = document.querySelectorAll(".arrow");
+
+    for (let arrow of arrows) {
+        arrow.onclick = blockMove;
     }
 
+    function getPosition(obj) {
+        const idParts = obj.id.split('-');
+        return idParts[1];
 
-    function setDefault(checkedElement){
-
-        textElement.disabled = false;
-        textElement.readOnly = false;
-        textElement.type = 'text';
-
-        for(var checkbox of checkboxes){                     
-            checkbox.checked = checkbox.value === checkedElement.value ? true : false;            
-        }        
     }
 
+    function blockMove() {
 
-    function changeInputAttribute(){
-         
-        setDefault(this);
-        
-        switch(this.value){
-            case 'disable' :             
-                textElement.disabled = true;
+        const position = getPosition(this);
+        this.parentNode.classList.add(position);
+
+        switch (position) {
+            case 'top':
+                this.parentNode.style.top = this.parentNode.clientHeight / 2 + 'px';
                 break;
-            case 'read' :             
-                textElement.readOnly = true;
+            case 'bottom':
+                this.parentNode.style.top = `calc(100% - ${this.parentNode.clientHeight / 2}px)`;
                 break;
-            case 'number' :             
-                textElement.type = 'number';
+            case 'left':
+                this.parentNode.style.left = this.parentNode.clientWidth / 2 + 'px';
                 break;
-            case 'hidden' :             
-                textElement.type = 'password';
-                break;                            
-        }          
-    }   
-   
+            case 'right':
+                this.parentNode.style.left = `calc(100% - ${this.parentNode.clientWidth / 2}px)`;
+                break;
+        }
+    }
+
 }
 init();
 
