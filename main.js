@@ -60,10 +60,11 @@ function init() {
     }
 
     function stopValidation(){
-
-        message.classList.remove('show');
-        inputElement.classList.remove('input-error');
-        inputElement.classList.remove('input-ok');
+      
+        if(inputElement.classList.contains('input-ok')){
+            message.classList.remove('show');
+            inputElement.classList.remove('input-ok');
+        }
     }
 
 }
