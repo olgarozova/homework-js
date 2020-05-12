@@ -42,7 +42,8 @@ function init() {
         
         message.innerHTML = "";
         message.classList.remove('show');
-        inputElement.classList.remove('input-error');    
+        inputElement.classList.remove('input-error');  
+        inputElement.classList.remove('input-ok');  
 
         if(selectElement.value === 'none' && inputElement.value !==''){
             message.classList.add('show');
@@ -61,8 +62,7 @@ function init() {
 
     function stopValidation(){
       
-        if(inputElement.classList.contains('input-ok')){
-            message.classList.remove('show');
+        if(inputElement.classList.contains('input-ok')){            
             inputElement.classList.remove('input-ok');
         }
     }
