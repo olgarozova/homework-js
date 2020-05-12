@@ -1,68 +1,45 @@
-
-#content{
-    border-top: 1px solid #ccc;
+form{
+    display: flex;
+    width: 450px;
+    justify-content: space-between;    
 }
-#content__menu-wrapper{
-    width: 250px;    
-    position: relative; /*change the value to "absolute" get a content-independent menu*/
-    padding-bottom: 26px;
-    overflow: hidden;
-    transition: 2s;
+form select:focus,
+form input:focus{
+    outline: none;
 }
-
-#content__menu{    
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: #fff;
-    border: 1px solid #ececec;  
-    box-sizing: border-box;  
-    position: absolute;         
-    bottom: 26px;
+#user-input{
+    width: 150px;
 }
-
-#content__menu-arrow{        
-    position: absolute;    
-    cursor: pointer;
-    width: 20px;
-    height: 26px;
-    font-size: 22px;    
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    left: calc(50% - 10px);
-    top: 0;
-    transition: 2s;
+.input-ok{
+  box-shadow: 0 0 3px 3px rgba(59, 153, 252, .7);  
 }
-.show #content__menu-arrow{
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    -ms-transform: rotate(-90deg);
-    -o-transform: rotate(-90deg);
-    transform: rotate(-90deg);
+.input-error{
+    box-shadow: 0 0 3px 3px rgba(239, 35, 35, .7);
 }
-#content__menu-arrow:after{
-    content: "\27A4";
+#user-input-message{
+    position: absolute;  
+    min-width: 20px;     
+    border-radius: 4px;
+    margin-top: 13px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;      
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #eee;
+    z-index: 100;
+    font-size: 13px;
+    display: none;
 }
-#content__menu li{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #ececec;
-}
-#content__menu li:last-child{
-    border-bottom: 0;
-}
-#content__menu li a{
+#user-input-message:before{
+    content: "";
+    position: absolute;
+    z-index: 101;
+    top: -8px;
+    left: 16px;    
+    border-top: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #eee;
+}  
+#user-input-message.show{
     display: block;
-    padding: 12px;
-    font: 13px Arial, tahoma, sans-serif;    
-    color: #777;
-    text-decoration: none;
-}
-#content__menu li a:hover {
-    background: #f9f9f9;
-    color: #333;
 }
