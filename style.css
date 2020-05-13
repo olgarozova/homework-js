@@ -1,45 +1,112 @@
-form{
-    display: flex;
-    width: 450px;
-    justify-content: space-between;    
+form input{
+    margin: 10px 0;
+    font-size: 15px;
 }
-form select:focus,
-form input:focus{
+button{
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 15px;    
     outline: none;
 }
-#user-input{
-    width: 150px;
+button:hover {
+    background: #1d49aa;
+    cursor: pointer;
 }
-.input-ok{
-  box-shadow: 0 0 3px 3px rgba(59, 153, 252, .7);  
+#button-send{
+    margin-left: auto;    
 }
-.input-error{
-    box-shadow: 0 0 3px 3px rgba(239, 35, 35, .7);
-}
-#user-input-message{
-    position: absolute;  
-    min-width: 20px;     
-    border-radius: 4px;
-    margin-top: 13px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;      
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #eee;
-    z-index: 100;
-    font-size: 13px;
-    display: none;
-}
-#user-input-message:before{
-    content: "";
+#button-close {
     position: absolute;
-    z-index: 101;
-    top: -8px;
-    left: 16px;    
-    border-top: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #eee;
+    top: 2px;
+    right: 2px;
+    width: 4px;
+    height: 4px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    margin-left: auto;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: 0.8s;
+}
+#button-close:before,
+#button-close:after {
+    position: absolute;
+    left: 2px;
+    content: ' ';
+    height: 4px;
+    width: 1px;
+    background-color: #aaa;
+    transition: 0.8s;
+}
+#button-close:before {
+    transform: rotate(45deg);
+}
+#button-close:after {
+    transform: rotate(-45deg);
+}
+#button-close:hover {
+    opacity: 1;
+}
+#overlay {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+    z-index:1;
+    background-color: rgba(1, 1, 1);     
+}
+#overlay,
+#modal{
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+#modal.show{
+    opacity: 1;
+    visibility: visible;
+}
+#overlay.show{
+    opacity: 0.8;
+    visibility: visible;   
+    transition: 2s;
+}
+form{
+    display: flex;    
+    flex-direction: column;
+    border: 1px solid #bbb;
+    position: absolute;
+    z-index:10;  
+    background: #fff;    
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    transition: 0.8s;   
 }  
-#user-input-message.show{
-    display: block;
+.show form{
+    top: calc(50% - 86px);
+    left: calc(50% - 146px);
+    padding: 40px 20px 20px;
+    width: 250px;
+    height: 110px;    
+    transition: 2s;
+}
+.show #button-close {    
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;                        
+    transition: 2s;
+}
+.show #button-close:before,
+.show #button-close:after {
+    left: 10px;
+    height: 20px;    
+    transition: 2s;
 }

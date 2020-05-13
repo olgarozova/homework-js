@@ -8,26 +8,26 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="main.js"></script>
 </head>
-
 <body>
-    <h1 id="contentTitle"> Task 14</h1>  
-    <div id = "content">  
-        <form>
-            <select id = "input-type">
-                <option value="none" >Select input type</option>
-                <option value="lndc">Only letters,numbers,dot and comma</option>
-                <option value="letter">Only letters</option>
-                <option value="number">Only numbers</option>
-            </select>
-            <div class="user-input-wrapper">
-                <input id = "user-input" type = "text"/>
-                <div id="user-input-message"></div>
-            </div>
-        </form>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur porro ullam ab quas aliquid, mollitia vero at error, magni dolor quam. Nobis quibusdam maxime optio corporis? Rerum, ullam nihil?</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde adipisci harum perspiciatis natus fuga voluptate assumenda! Nostrum aut doloremque esse illum aspernatur labore, similique iste vel amet, tempore nisi! Exercitationem!</p>
-    </div>    
-    </div>  
+    <div id="overlay"></div>
+    <h1 id="contentTitle"> Task 14</h1>
+    <div id="content">
+        <button id="button-subscribe" type="button">Subscribe</button>    
+        <div id="modal" >
+            <form>
+                <span id="button-close"></span>
+                <input type="text" placeholder="Enter name" />
+                <input type="number" placeholder="Enter age" />
+                <button id="button-send" type="button">Send</button>
+            </form>     
+        </div>               
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur porro ullam ab quas aliquid,
+            mollitia vero at error, magni dolor quam. Nobis quibusdam maxime optio corporis? Rerum, ullam nihil?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde adipisci harum perspiciatis natus fuga
+            voluptate assumenda! Nostrum aut doloremque esse illum aspernatur labore, similique iste vel amet, tempore
+            nisi! Exercitationem!</p>
+    </div>
+    </div>
 </body>
 
 </html>
