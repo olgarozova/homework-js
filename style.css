@@ -1,45 +1,47 @@
+
+*{
+    box-sizing: border-box;
+}
 form{
     display: flex;
-    width: 450px;
-    justify-content: space-between;    
+    width: 300px;
+    flex-direction: column;  
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+.form-element{
+ margin: 10px 0;
 }
 form select:focus,
 form input:focus{
     outline: none;
 }
-#user-input{
-    width: 150px;
+.form-element-send{
+    margin-left: auto;
 }
-.input-ok{
+.form-element-input input{
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 10px;    
+}
+
+
+
+.valid{
   box-shadow: 0 0 3px 3px rgba(59, 153, 252, .7);  
 }
-.input-error{
+.invalid{
     box-shadow: 0 0 3px 3px rgba(239, 35, 35, .7);
 }
-#user-input-message{
-    position: absolute;  
-    min-width: 20px;     
-    border-radius: 4px;
-    margin-top: 13px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5) inset;      
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #eee;
-    z-index: 100;
-    font-size: 13px;
+.error-message{
+    color: rgba(239, 35, 35);
+    font-size: 12px;
+    padding: 3px 11px 0;
+    position: absolute;
     display: none;
 }
-#user-input-message:before{
-    content: "";
-    position: absolute;
-    z-index: 101;
-    top: -8px;
-    left: 16px;    
-    border-top: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #eee;
-}  
-#user-input-message.show{
+.error-message.show{
     display: block;
 }

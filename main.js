@@ -1,75 +1,124 @@
+function FormData(name, age, email, subscribe, bank) {
+    this.name = name;
+    this.age = age;
+    this.email = email;
+    this.subscribe = subscribe;
+    this.bank = bank;
 
-'use strict'
-function init() {
+    this.send = function () {
+        var message = 'Data sent.'
 
-    let inputElement = document.querySelector('#user-input');
-    let message = document.querySelector('#user-input-message');
-    let selectElement = document.querySelector('#input-type');    
+        if (this.bank) {
+            message += ' You have chosen a payment method' + this.bank + '.';
+        }
+        if (this.subscribe) {
+            message += ' Thank you for subscribing to our newsletter';
+        }        
+        alert(message);
+    }
+}
+function FormElement() {
 
-    inputElement.onfocus = validation;
-    inputElement.oninput = validation;
-    inputElement.onblur = stopValidation;
-    selectElement.onchange = validation;
+    this.nameElement = document.querySelector("#user-name");
+    this.ageElement = document.querySelector("#user-age");
+    this.emailElement = document.querySelector("#user-email");
+    this.subscribeElement = document.querySelector("#user-subscribe");
+    this.bankElement = null;
+   
+    this.form = document.querySelector("form");
     
 
-    function isValid(type,str){
 
-        message.innerHTML = "";
+    this.validation = function () {
+
+        let message = this.nextElementSibling;
+
         message.classList.remove('show');
-        inputElement.classList.remove('input-error');
+        this.classList.remove('invalid');
+        this.classList.remove('valid');
 
-        if(str){
-            inputElement.classList.add('input-ok');
-        }
-
-        for (let char of str) {                
-            let symbol = char.toLowerCase();
-
-            let isNumber = symbol.charCodeAt() >= 48 && symbol.charCodeAt() <= 57;        
-            let isLetter = symbol.charCodeAt() >= 97 && symbol.charCodeAt() <= 122;
-            let isComma = symbol === ',';  
-            let isDot = symbol === '.';                
-
-            if(type === 'lndc' && (!isLetter && !isNumber && !isComma && !isDot)) return false;                                
-            if(type === 'letter' && !isLetter) return false;                                
-            if(type === 'number' && !isNumber) return false;                                
-  
-        }
-        return true;
-    }  
-
-    function validation(){ 
-        
-        message.innerHTML = "";
-        message.classList.remove('show');
-        inputElement.classList.remove('input-error');  
-        inputElement.classList.remove('input-ok');  
-
-        if(selectElement.value === 'none' && inputElement.value !==''){
+        if (!isValid(this.value, this.name)) {
+            this.classList.add('invalid');
             message.classList.add('show');
-            message.innerHTML = selectElement[selectElement.selectedIndex].label;
-            return;
+        } else {
+            this.classList.add('valid');
+        }
+
+        function isValid(str, type) {
+
+            if (!str) {
+                return false;
+            }
+
+            var emailPattern = /^[a-zA-Z0-9_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+
+            if (type === 'age' && (str.length > 2 || str < 7)) return false;
+            if (type === 'email' && !emailPattern.test(str)) return false;
+
+            for (let char of str) {
+                let symbol = char.toLowerCase();
+
+                let isLetter = symbol.charCodeAt() >= 97 && symbol.charCodeAt() <= 122;
+
+                if (type === 'name' && !isLetter) return false;
+            }
+            return true;
+
+        };
+
+    };
+    this.removeHighlight = function () {
+        if(this.classList.contains('valid')){            
+            this.classList.remove('valid');
+        }
+    };
+
+    this.send = function (event) {       
+        this.bankElement = document.querySelector("input[name='bank']:checked");
+
+        let bank = this.bankElement ? this.bankElement.parentNode.innerText : '';
+
+        let validate = this.validation.bind(this.nameElement);
+        validate();
+        this.nameElement.classList.remove('valid');
+        validate = this.validation.bind(this.ageElement);
+        validate();
+        this.ageElement.classList.remove('valid');
+        validate = this.validation.bind(this.emailElement);
+        validate();
+        this.emailElement.classList.remove('valid');
+
+        if(!this.nameElement.classList.contains('invalid') && !this.ageElement.classList.contains('invalid')
+            && !this.emailElement.classList.contains('invalid')){
+            var data = new FormData(this.nameElement.value,
+                this.ageElement.value,
+                this.emailElement.value,
+                this.subscribeElement.checked,
+                bank);
+            data.send();
+        }else{
+            alert('Please enter correct data.');
+            event.preventDefault();
         }
         
-        if(!isValid(selectElement.value,inputElement.value)){
-            inputElement.classList.add('input-error');
-            inputElement.classList.remove('input-ok');
-            message.classList.add('show');
-            message.innerHTML = "Allow " + selectElement[selectElement.selectedIndex].label.toLowerCase();       
-        } 
 
-    }
+    };
 
-    function stopValidation(){
-      
-        if(inputElement.classList.contains('input-ok')){            
-            inputElement.classList.remove('input-ok');
-        }
-    }
+    this.init = function () {
+        this.nameElement.oninput = this.validation;
+        this.nameElement.onblur = this.removeHighlight;
 
+        this.ageElement.oninput = this.validation;
+        this.ageElement.onblur = this.removeHighlight;
+
+        this.emailElement.oninput = this.validation;            
+        this.emailElement.onblur = this.removeHighlight;
+
+        this.form.onsubmit = this.send.bind(this);       
+    };
+    this.init();
 }
-init();
-
+new FormElement();
 
 
 

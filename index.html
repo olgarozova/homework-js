@@ -10,23 +10,40 @@
 </head>
 
 <body>
-    <h1 id="contentTitle"> Task 14</h1>  
-    <div id = "content">  
-        <form>
-            <select id = "input-type">
-                <option value="none" >Select input type</option>
-                <option value="lndc">Only letters,numbers,dot and comma</option>
-                <option value="letter">Only letters</option>
-                <option value="number">Only numbers</option>
-            </select>
-            <div class="user-input-wrapper">
-                <input id = "user-input" type = "text"/>
-                <div id="user-input-message"></div>
-            </div>
-        </form>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur porro ullam ab quas aliquid, mollitia vero at error, magni dolor quam. Nobis quibusdam maxime optio corporis? Rerum, ullam nihil?</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde adipisci harum perspiciatis natus fuga voluptate assumenda! Nostrum aut doloremque esse illum aspernatur labore, similique iste vel amet, tempore nisi! Exercitationem!</p>
-    </div>    
+    <h1 id="contentTitle"> Task 15</h1>  
+    <form>
+        <div class="form-element form-element-input">
+          <input id="user-name" name='name' type="text" placeholder="Enter your name"/>
+          <div class="error-message">Must contain only letters, is required</div>
+        </div>
+        <div class="form-element form-element-input">
+          <input id="user-age" name='age' type="number" placeholder="Enter your age"/>
+          <div class="error-message">Max chars are 2, the min value is 7, is required</div>
+        </div>
+        <div class="form-element form-element-input">
+          <input id="user-email" name='email' type="email" placeholder="Enter your email"/>
+          <div class="error-message">Must contain only letters,numbers, _ , . , is required</div>
+        </div>
+        <div class="form-element">
+          <label>
+            <input id="user-subscribe" name="subscribe" type="checkbox" value="1" />
+            Subscribe to our newsletter
+          </label>
+        </div>
+        <div class="form-element">
+          <label>
+            <input name="bank" type="radio" value="privat" />
+            Privat
+          </label>
+          <label>
+            <input name="bank" type="radio" value="mono" />
+              Monobank
+          </label>
+        </div>
+        <div class="form-element form-element-send">
+          <button id="button-send" type="submit">Send</button>
+        </div>
+      </form>   
     </div>  
 </body>
 
